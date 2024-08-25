@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a routerLink="/" class="navbar-brand">SCT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav px-2">
+            <li class="nav-item">
+                <a routerLink="/" class="nav-link">Inicio</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav me-4">
+            <li class="nav-item dropdown me-5">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i>Bienvenido</i>
+                </a>
+                <div class="dropdown-menu">
+                    <a routerLink="/configuracion" class="dropdown-item">
+                        <i>Configuracion</i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

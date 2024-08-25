@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+    background-color: #606c83;
+
+}
+
+.container-all {
+    background-color: #606c83;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex: 1;
+}
+.container{
+    height: 81.9%;
+}
+
+.table-striped {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #444; /* Color del thumb y del track */
+}
+
+.table-striped::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+}
+
+.table-striped::-webkit-scrollbar-track {
+    background: #444; /* Color del track */
+    border-radius: 10px; /* Borde redondeado del track */
+}
+
+.table-striped::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del thumb */
+    border-radius: 10px; /* Borde redondeado del thumb */
+    border: 2px solid #444; /* Borde del thumb */
+}
