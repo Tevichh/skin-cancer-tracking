@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card shadow" style="width: 450px;">
+    <div class="card-body">
+      <div class="text-center mb-4">
+        <img src="assets/logosct.png" class="img-fluid" alt="logo" style="max-width: 250px;">
+      </div>
+      <form action="#" method="post">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="user" placeholder="Ingresar Usuario" name="user" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Ingresar Contraseña" name="pass"
+            required>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Login</button>
+          <button class="btn btn-danger btn-lg" routerLink="/ver-examen">Ver Examen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

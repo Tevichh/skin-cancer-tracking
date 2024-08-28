@@ -13,6 +13,7 @@ import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.componen
 import { HttpClientModule } from '@angular/common/http';
 import { PacienteService } from './servicios/paciente.service';
 import { FormsModule } from '@angular/forms';
+import { VerExamenComponent } from './componentes/ver-examen/ver-examen.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     ConfiguracionComponent,
     NoEncontradoComponent,
-    PiePaginaComponent
+    PiePaginaComponent,
+    VerExamenComponent
   ],
   imports: [
     BrowserModule,
