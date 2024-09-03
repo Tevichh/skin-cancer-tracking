@@ -4,17 +4,35 @@
       <div class="text-center mb-4">
         <img src="assets/logosct.png" class="img-fluid" alt="logo" style="max-width: 250px;">
       </div>
-      <form action="#" method="post">
+      <div *ngIf="invalidForm" class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" fill="currentColor" role="img" aria-label="Error:">
+          <use xlink:href="#exclamation-triangle-fill" />
+        </svg>
+        <div>
+          Usuario o contraseña incorrectos.
+        </div>
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="verificarLogin({ value: loginForm.value, valid : !!loginForm.valid})">
         <div class="mb-3">
-          <input type="text" class="form-control" id="user" placeholder="Ingresar Usuario" name="user" required>
+          <input type="text" class="form-control" placeholder="Ingresar Usuario" id="username" name="username"
+            [(ngModel)]="login.username" #username="ngModel"
+            [ngClass]="{'is-invalid': username.errors && username.touched}" required>
+          <div [hidden]="!username.errors?.['required']" class="invalid-feedback">
+            Usuario requerido
+          </div>
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Ingresar Contraseña" name="pass"
-            required>
+          <input type="password" class="form-control" placeholder="Ingresar Contraseña" id="password" name="password"
+            [(ngModel)]="login.password" #password="ngModel"
+            [ngClass]="{'is-invalid': password.errors && password.touched}" required>
+          <div *ngIf="password.errors?.['required'] && password.touched" class="invalid-feedback">
+            Contraseña requerida
+          </div>
         </div>
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-lg" style="margin-bottom: 10px;">Login</button>
-          <button class="btn btn-danger btn-lg" routerLink="/ver-examen">Ver Examen</button>
+          <button type="submit" class="btn btn-primary btn-lg" style="margin-bottom: 10px;"
+            [disabled]="loginForm.invalid">Login</button>
+          <button type="button" class="btn btn-danger btn-lg" routerLink="/verExamen">Ver Examen</button>
         </div>
       </form>
     </div>

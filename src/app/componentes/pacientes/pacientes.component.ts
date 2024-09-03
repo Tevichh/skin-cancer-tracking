@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PacienteService } from '../../servicios/paciente.service';
 import { Paciente } from '../../interfaces/paciente.interface';
 import { NgForm } from '@angular/forms';
-import { response } from 'express';
 
 
 @Component({
@@ -30,6 +29,8 @@ export class PacientesComponent implements OnInit {
     num_telefono: "",
     email: ""
   }
+
+  rol = localStorage.getItem("rol");
 
   isEditing: boolean = false;
 
