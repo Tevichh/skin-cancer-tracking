@@ -1,47 +1,60 @@
-<button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#abrirDashboarModal"
-    (click)="abrirModal()">Dashboard</button>
+<button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" (click)="abrirModal()"
+    data-bs-target="#abrirDashboarModal">Dashboard</button>
 
 <div class="modal fade" id="abrirDashboarModal">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="text-center">
-                <h5 class="modal-title">Dashboard</h5>
+                <h4 class="modal-title">Dashboard</h4>
             </div>
 
-            <div class="row">
-                <div class="col-md-4 py-3">
-                    <table class="table table-striped m-3 text-center">
-                        <thead class="table-dark">
-                            <tr>
-                                <th style="width: 40%;">Estado</th>
-                                <th style="width: 40%;">Cantidad</th>
-                            </tr>
+            <div class="row py-4">
+
+                <div class="col-md-4">
+                    <table class="table text-center">
+                        <thead class="dark">
+                            <th>Estado</th>
+                            <th>Cantidad</th>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cancer of categoriasCancerEntries">
-                                <td>{{ cancer[0] }}</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-primary" role="progressbar"
-                                            [style.width.%]="getPercentage(cancer[1])">
-                                            {{ cancer[1] }}
-                                        </div>
-                                    </div>
-                                </td>
-
+                            <tr>
+                                <td>{{categoriasCancerEntries[0][0]}}</td>
+                                <td>{{categoriasCancerEntries[0][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{categoriasCancerEntries[1][0]}}</td>
+                                <td>{{categoriasCancerEntries[1][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{categoriasCancerEntries[2][0]}}</td>
+                                <td>{{categoriasCancerEntries[2][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{categoriasCancerEntries[3][0]}}</td>
+                                <td>{{categoriasCancerEntries[3][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{categoriasCancerEntries[4][0]}}</td>
+                                <td>{{categoriasCancerEntries[4][1]}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{categoriasCancerEntries[5][0]}}</td>
+                                <td>{{categoriasCancerEntries[5][1]}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <!-- Gráfico de Torta -->
                 <div class="col-md-4">
+                    <canvas #pieChart></canvas>
+                </div>
+                <!-- Gráfico de Barras Horizontales -->
+                <div class="col-md-4">
+                    <canvas #barChart></canvas>
+                </div>
 
 
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
             </div>
-
         </div>
     </div>
 </div>

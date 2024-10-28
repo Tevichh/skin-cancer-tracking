@@ -1,0 +1,11 @@
+canvas {
+    width: 100% !important;
+    /* Asegúrate de que el canvas ocupe el ancho completo */
+    height: auto !important;
+    /* Mantiene la relación de aspecto */
+}
+
+.chart-legend {
+    pointer-events: none;
+    /* Deshabilita todos los eventos de mouse */
+}
