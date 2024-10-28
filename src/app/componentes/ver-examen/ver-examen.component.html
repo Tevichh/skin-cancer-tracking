@@ -4,10 +4,12 @@
             <label for="identificationNumber" class="form-label" style="font-size: 1.1rem;">Ingresa tu número de
                 identificación:</label>
             <div class="input-group mb-3">
-                <input id="identificationNumber" class="form-control" name="identificationNumber" inputmode="numeric"
-                    pattern="[0-9]*" required>
-                <button class="btn btn-primary" type="button">Filtrar</button>
+                <input #identificationInput class="form-control" name="identificationNumber" inputmode="numeric"
+                    pattern="[0-9]*" required (keydown.enter)="filtrarConsultas(identificationInput.value)">
+                <button class="btn btn-primary" (click)="filtrarConsultas(identificationInput.value)">Buscar</button>
             </div>
+            <div *ngIf="consultasFiltradas.length === 0" class="alert alert-warning">No se encontraron
+                consultas.</div>
         </div>
 
     </div>
@@ -24,12 +26,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let consulta of consultas">
-                        <td>{{consulta.num_paciente_id}}</td>
-                        <td>{{nombreCompleto}}</td>
+                    <tr *ngFor="let consulta of consultasFiltradas">
+                        <td>{{consulta.identificacion}}</td>
+                        <td>{{consulta.nombreCompleto}}</td>
                         <td>{{consulta.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
-                        <td> <button class="btn btn-danger">VER</button></td>
-                    </tr> -->
+                        <td> <button class="btn btn-danger" (click)="verConsulta(consulta)">VER</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

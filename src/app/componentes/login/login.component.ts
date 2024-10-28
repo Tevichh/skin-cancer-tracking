@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
           if (response.isTrue) {
             localStorage.setItem("token", response.token);
             localStorage.setItem("rol", response.rol);
+            localStorage.setItem("user", response.user);
             this.router.navigate(['']);
             this.invalidForm = false;
           } else {

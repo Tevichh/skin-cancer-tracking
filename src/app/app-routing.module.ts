@@ -6,13 +6,15 @@ import { ConfiguracionComponent } from './componentes/configuracion/configuracio
 import { NoEncontradoComponent } from './componentes/no-encontrado/no-encontrado.component';
 import { VerExamenComponent } from './componentes/ver-examen/ver-examen.component';
 import { authGuard } from './custom/auth.guard';
+import { ConsultasComponent } from './componentes/consultas/consultas.component';
 
 const routes: Routes = [
   { path: "", component: TableroComponent, canActivate: [authGuard] },
-  { path: "login", component: LoginComponent},
+  { path: "login", component: LoginComponent },
   { path: "configuracion", component: ConfiguracionComponent, canActivate: [authGuard] },
   { path: "paciente/editar/:id", component: TableroComponent, canActivate: [authGuard] },
-  { path: "verExamen", component: VerExamenComponent, canActivate: [authGuard] },
+  { path: "paciente/consulta/:id", component: ConsultasComponent, canActivate: [authGuard] },
+  { path: "verExamen", component: VerExamenComponent },
   { path: "**", component: NoEncontradoComponent }
 ];
 

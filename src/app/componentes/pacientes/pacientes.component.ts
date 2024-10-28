@@ -71,22 +71,18 @@ export class PacientesComponent implements OnInit {
   agregarPaciente({ value, valid }: { value: Paciente, valid: boolean }) {
     if (!valid) {
       console.log("ERROR")
-    } else {
+    } else { //AGREGAR PACIENTE
       if (!this.isEditing) {
         this.pacienteServicio.addPaciente(value).subscribe(
           response => {
-            console.log(response);
             this.cargarPacientes();
             this.pacienteForm.resetForm();
             this.botonCerrar.nativeElement.click();
           }
         );
-      } else {
-        console.log(value);
+      } else {//EDITAR PACIENTE
         this.pacienteServicio.updatePaciente(value).subscribe(
           response => {
-            console.log(value);
-            console.log(response);
             this.cargarPacientes();
             this.pacienteForm.resetForm();
             this.botonCerrar.nativeElement.click();
@@ -101,7 +97,6 @@ export class PacientesComponent implements OnInit {
   eliminarPaciente(identificador: string) {
     this.pacienteServicio.deletePaciente(identificador).subscribe(
       response => {
-        console.log(response);
         this.cargarPacientes();
       }
     )

@@ -6,7 +6,7 @@
         </button>
     </div>
 
-    <div  class="collapse navbar-collapse" id="navbarCollapse">
+    <div *ngIf="autenticado()" class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav px-2">
             <li class="nav-item">
                 <a routerLink="/" class="nav-link">Inicio</a>
@@ -16,11 +16,14 @@
         <ul class="navbar-nav me-4">
             <li class="nav-item dropdown me-5">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <i>Bienvenido</i>
+                    <i>{{userName}}</i>
                 </a>
                 <div class="dropdown-menu">
-                    <a routerLink="/configuracion" class="dropdown-item">
+                    <!-- <a routerLink="/configuracion" class="dropdown-item">
                         <i>Configuracion</i>
+                    </a> -->
+                    <a class="dropdown-item" (click)="cerrarSesion()">
+                        <i>Cerrar Sesión</i>
                     </a>
                 </div>
             </li>

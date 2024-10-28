@@ -18,6 +18,12 @@ import { LoginService } from './servicios/login.service';
 import { authInterceptor } from './custom/auth.interceptor';
 import { MedicosComponent } from './componentes/medicos/medicos.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { MedicoService } from './servicios/medico.service';
+import { ConsultaService } from './servicios/consulta.service';
+import { ConsultasComponent } from './componentes/consultas/consultas.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +37,8 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
     PiePaginaComponent,
     VerExamenComponent,
     MedicosComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConsultasComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +50,11 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
     provideClientHydration(),
     PacienteService,
     LoginService,
+    MedicoService,
+    ConsultaService,
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })

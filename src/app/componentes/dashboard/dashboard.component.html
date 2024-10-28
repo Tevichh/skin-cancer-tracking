@@ -1,2 +1,47 @@
 <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#abrirDashboarModal"
-    (click)="abrirModal()">Agregar Medico</button>
+    (click)="abrirModal()">Dashboard</button>
+
+<div class="modal fade" id="abrirDashboarModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="text-center">
+                <h5 class="modal-title">Dashboard</h5>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 py-3">
+                    <table class="table table-striped m-3 text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 40%;">Estado</th>
+                                <th style="width: 40%;">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cancer of categoriasCancerEntries">
+                                <td>{{ cancer[0] }}</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar"
+                                            [style.width.%]="getPercentage(cancer[1])">
+                                            {{ cancer[1] }}
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+
+
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

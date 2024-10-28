@@ -1,3 +1,195 @@
-<button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#agregarMedicoModal"
-    (click)="abrirModal()">Agregar Medico</button>
+<button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal"
+    data-bs-target="#agregarMedicoModal">Médico</button>
 
+
+
+
+<div class="modal fade" id="agregarMedicoModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="text-center">
+                <h5 class="modal-title">Médico</h5>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="container" style="height: 400px; overflow-y: auto; overflow-x: hidden;">
+                        <div class="text-center">
+                            <h5 class="modal-title">Consultar Médico</h5>
+                        </div>
+
+                        <!-- <input type="text" class="form-control mt-3"
+                            placeholder="Buscar Médico (Ingresar identificación)"> -->
+
+                        <table class="table table-striped mt-3">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th style="width: 20%;">Identificacion</th>
+                                    <th style="width: 30%;">Nombre completo</th>
+                                    <th style="width: 20%;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let medico of medicos">
+                                    <td>{{ medico.num_medico_id }}</td>
+                                    <td>
+                                        {{
+                                        medico.nombre_1 +
+                                        (medico.nombre_2 ? " " + medico.nombre_2 : "") +
+                                        " " + medico.apellido_1 +
+                                        (medico.apellido_2 ? " " + medico.apellido_2 : "")
+                                        }}
+                                    </td>
+
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <button class="btn btn-warning btn-block"
+                                                    (click)="abrirModal(medico.num_medico_id)">Editar</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button class="btn btn-danger btn-block"
+                                                    (click)="eliminarMedico(medico.num_medico_id)">Eliminar</button>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5">
+                    <div class="text-center">
+                        <h5 class="modal-title">{{ isEditing ? 'Editar Médico' : 'Agregar Médico' }}</h5>
+                    </div>
+                    <form #medicoForm="ngForm"
+                        (ngSubmit)="agregarMedico({ value: medicoForm.value, valid: !!medicoForm.valid })">
+                        <div class="modal-body row g-3 p-4">
+                            <!-- Primer Nombre -->
+                            <div class="col-md-3">
+                                <label for="nombre_1" class="form-label">Primer Nombre <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="nombre_1" name="nombre_1"
+                                    [(ngModel)]="medico.nombre_1" #nombre_1="ngModel"
+                                    [ngClass]="{'is-invalid': nombre_1.errors && nombre_1.touched}" required
+                                    minlength="2">
+                                <div [hidden]="!nombre_1.errors?.['required']" class="invalid-feedback">
+                                    Primer nombre requerido
+                                </div>
+                                <div [hidden]="!nombre_1.errors?.['minlength']" class="invalid-feedback">
+                                    Debe contener al menos 2 caracteres
+                                </div>
+                            </div>
+
+                            <!-- Segundo Nombre -->
+                            <div class="col-md-3">
+                                <label for="nombre_2" class="form-label">Segundo Nombre</label>
+                                <input type="text" class="form-control" id="nombre_2" name="nombre_2"
+                                    [(ngModel)]="medico.nombre_2">
+                            </div>
+
+                            <!-- Primer Apellido -->
+                            <div class="col-md-3">
+                                <label for="apellido_1" class="form-label">Primer Apellido <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="apellido_1" name="apellido_1"
+                                    [(ngModel)]="medico.apellido_1" #apellido_1="ngModel"
+                                    [ngClass]="{'is-invalid': apellido_1.errors && apellido_1.touched}" required
+                                    minlength="2">
+                                <div [hidden]="!apellido_1.errors?.['required']" class="invalid-feedback">
+                                    Primer apellido requerido
+                                </div>
+                                <div [hidden]="!apellido_1.errors?.['minlength']" class="invalid-feedback">
+                                    Debe contener al menos 2 caracteres
+                                </div>
+                            </div>
+
+                            <!-- Segundo Apellido -->
+                            <div class="col-md-3">
+                                <label for="apellido_2" class="form-label">Segundo Apellido</label>
+                                <input type="text" class="form-control" id="apellido_2" name="apellido_2"
+                                    [(ngModel)]="medico.apellido_2">
+                            </div>
+
+                            <!-- Tipo de Documento -->
+                            <div class="col-md-4">
+                                <label for="tipo_id" class="form-label">Tipo de Documento <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" id="tipo_id" name="tipo_id" [(ngModel)]="medico.tipo_id"
+                                    #tipo_id="ngModel" [ngClass]="{'is-invalid': tipo_id.errors && tipo_id.touched}"
+                                    required [disabled]="isEditing">
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="CC">CC</option>
+                                    <option value="CE">CE</option>
+                                    <option value="PPT">PPT</option>
+                                    <option value="TI">TI</option>
+                                </select>
+                                <div [hidden]="!tipo_id.errors?.['required']" class="invalid-feedback">
+                                    Tipo de documento requerido
+                                </div>
+                            </div>
+
+                            <!-- Número de Identificación -->
+                            <div class="col-md-4">
+                                <label for="num_medico_id" class="form-label">Número de Identificación <span
+                                        class="text-danger">*</span></label>
+                                <input id="num_medico_id" class="form-control" name="num_medico_id" inputmode="numeric"
+                                    pattern="[0-9]*" [(ngModel)]="medico.num_medico_id" #num_medico_id="ngModel"
+                                    [ngClass]="{'is-invalid': num_medico_id.errors && num_medico_id.touched}" required
+                                    [readonly]="isEditing" [style.background-color]="isEditing ? '#e9ecef' : ''">
+                                <div [hidden]="!num_medico_id.errors?.['required']" class="invalid-feedback">
+                                    Número de identificación requerido
+                                </div>
+                                <div [hidden]="!num_medico_id.errors?.['pattern']" class="invalid-feedback">
+                                    Solo se permiten números
+                                </div>
+                            </div>
+
+                            <!-- Número de Teléfono -->
+                            <div class="col-md-4">
+                                <label for="num_telefono" class="form-label">Número de Teléfono <span
+                                        class="text-danger">*</span></label>
+                                <input id="num_telefono" class="form-control" name="num_telefono" inputmode="numeric"
+                                    pattern="[0-9]*" [(ngModel)]="medico.num_telefono" #num_telefono="ngModel"
+                                    [ngClass]="{'is-invalid': num_telefono.errors && num_telefono.touched}" required>
+                                <div [hidden]="!num_telefono.errors?.['required']" class="invalid-feedback">
+                                    Número de teléfono requerido
+                                </div>
+                                <div [hidden]="!num_telefono.errors?.['pattern']" class="invalid-feedback">
+                                    Solo se permiten números
+                                </div>
+                            </div>
+
+
+
+                            <!-- Correo Electrónico -->
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Correo Electrónico <span
+                                        class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    [(ngModel)]="medico.email" #email="ngModel"
+                                    [ngClass]="{'is-invalid': email.errors && email.touched}" required>
+                                <div [hidden]="!email.errors?.['required']" class="invalid-feedback">
+                                    Correo electrónico requerido
+                                </div>
+                            </div>
+
+
+                            <!-- Botones -->
+                            <div class="col-12">
+                                <button class="btn btn-primary m-2" type="submit" [disabled]="medicoForm.invalid">
+                                    {{ isEditing ? 'Actualizar' : 'Registrar' }}
+                                </button>
+                                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" #botonCerrar
+                                    (click)="cancelar()">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
