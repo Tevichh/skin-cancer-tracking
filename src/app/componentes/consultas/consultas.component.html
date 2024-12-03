@@ -23,7 +23,7 @@
                 <tr *ngFor="let consulta of consultas">
                     <td>{{consulta.identificacion}}</td>
                     <td>{{consulta.nombreCompleto}}</td>
-                    <td>{{consulta.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{consulta.fecha | date:'dd/MM/yyyy'}}</td>
                     <td> <button class="btn btn-danger" (click)="verConsulta(consulta)">VER</button></td>
                 </tr>
             </tbody>
